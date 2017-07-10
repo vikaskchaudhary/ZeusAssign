@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+
+<br>
+<div class="form-group container container-table">
+    <div class="row">
+
+        <div class="col-sm-2">
+            <div class="table  sortable_table ">
+
+                <div class="row" >
+                    <a  href="#create_new_user"  ><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><strong>Create {{userDetails.length}} </strong></a>
+                </div>
+                </br>
+
+                <div ng-if="dataLoaded && (userDetails.length == null || userDetails.length == 0 )" class="row" >
+                    <h1 ><span class="label label-warning" >No User !! Create One !! </span></h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row vertical-center-row">
+        <div  class="table-responsive">
+            <table ng-if="userDetails.length > 0" class="table  table-bordered sortable_table frm">
+                <thead>
+                <tr>
+                    <th  class="text-left">First name</th>
+                    <th  class="text-left">Last name</th>
+                    <th  class="text-left">City</th>
+                    <th  class="text-left">Email Id</th>
+                    <th  class="text-left">DOB</th>
+                    <th  class="text-left">Role</th>
+                    <th  class="text-left">Action</th>
+
+                    <!-- <th  class="text-left">Archieve</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="updateSelectedUserRow($index)"  ng-style="selectedUserId==$index ? {'background-color' : 'powderblue'} : {'background-color' : 'seashell'}" ng-repeat="user in userDetails ">
+                    <td>
+                        <strong ng-bind="user.firstName"></strong>
+                    </td>
+                    <td>
+                        <strong ng-bind="user.lastName"></strong>
+                    </td>
+                    <td>
+                        <strong ng-bind="user.city"></strong>
+                    </td>
+                    <td>
+                        <strong ng-bind="user.emailId"></strong>
+                    </td>
+                    <td>
+                        <strong ng-bind="user.dob"></strong>
+                    </td>
+                    <td>
+                        <strong ng-bind="user.userType"></strong>
+                    </td>
+                    <td>
+                        <a  style="margin-right:10px;" href="#edit_user"  data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o  fa-2x" aria-hidden="true"></i> </a>
+                        <a style="margin-right:10px;"  href=""  ng-click=" deleteUser($index,'N')"  data-toggle="tooltip" title="Unarchive"><i class="fa fa-undo  fa-2x" aria-hidden="true"></i> </a>
+                        <a style="margin-right:10px;" ng-if="user.archievedFlag=='N'" href=""  ng-click=" archiveUnarchieveStudent($index,'Y')" data-toggle="tooltip" title="Archive"><i class="fa fa-archive  fa-2x" aria-hidden="true"></i> </a>
+                        <!--<a style="margin-right:10px;" data-toggle="tooltip" title="Reset Password"><i class="fa fa-unlock-alt  fa-2x" aria-hidden="true"></i></a>-->
+                    </td>
+                    <!--<td >
+
+
+                    </td>
+                    <td >
+
+                    </td>-->
+                </tr>
+                <!-- <tr ng-style="selectedUserId==$index ? {'background-color' : 'powderblue'} : {'background-color' : 'seashell'}">
+                     <td><a  href="#create_new_user"  ng-click="changeTab(6,'Create new user')" data-toggle="tooltip" title="Add User"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></td>
+                 </tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

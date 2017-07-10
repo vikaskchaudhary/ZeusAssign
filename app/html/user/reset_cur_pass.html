@@ -1,0 +1,70 @@
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-2">
+        <div ng-show="showSaveErrorAlert" class="alert alert-danger alert-dismissable">
+            <a class="close" data-dismiss="alert" ng-click="showSaveErrorAlert=!showSaveErrorAlert" aria-label="close">&times;</a>
+            <strong>Error While Saving Password</strong>
+        </div>
+        <div ng-show="showSaveAlert" class="alert alert-success alert-dismissable">
+            <a class="close" data-dismiss="alert" ng-click="showSaveAlert=!showSaveAlert" aria-label="close">&times;</a>
+            <strong>Password Saved Successfully</strong>
+        </div>
+    </div>
+</div>
+<form name="userEditorForm">
+<div class="row">
+
+    <br>
+        <div class="col-sm-5  col-md-offset-2">
+
+            <table class="table table-bordered table-responsive frm" style="margin-bottom : 0">
+
+                <tbody>
+                <tr>
+                    <th colspan="2" class="text-left col-sm-3" ><strong>Reset Password</strong></th>
+
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-3" ><strong>Old Password</strong> <span style="color:red" ng-show="userEditorForm.password_old.$error.required && userEditorForm.password_old.$dirty">*</span></td>
+                    <td>
+                        <input class="text-left"  ng-class="(userEditorForm.password_old.$invalid && !userEditorForm.password_old.$pristine) ?'parsley-error' :''"
+                               type="password" name="password_old"   ng-model="editUser.password_old"  field="{{'old_pass'}}" valid-password-c="editUser.checkOldPass" required />
+                        <span  style="color:red" ng-show="userEditorForm.password_old.$error.old_pass && userEditorForm.password_old.$dirty" class="error">Old Password does not match</span>
+                      </td>
+                </tr>
+
+                <tr>
+                    <td class="text-left col-sm-3" ><strong>New Password</strong> <span style="color:red" ng-show="userEditorForm.password.$error.required && userEditorForm.password.$dirty">*</span></td>
+                    <td>
+                        <input class="text-left"  ng-class="(userEditorForm.password.$invalid && !userEditorForm.password.$pristine) ?'parsley-error' :''"
+                               type="password" name="password"   ng-model="editUser.password_new" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+
+                        <span style="color:red" ng-show="!userEditorForm.password.$error.required && (userEditorForm.password.$error.minlength || userEditorForm.password.$error.maxlength) && userEditorForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+                        <span style="color:red" ng-show="!userEditorForm.password.$error.required && !userEditorForm.password.$error.minlength && !userEditorForm.password.$error.maxlength && userEditorForm.password.$error.pattern && userEditorForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-3" ><strong>Confirm Password</strong><span  style="color:red" ng-show="userEditorForm.password_c.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left"  ng-class="(userEditorForm.confirm_password.$invalid && !userEditorForm.confirm_password.$pristine) ?'parsley-error' :''"
+                                type="password" id="password_c" name="password_c" ng-model="editUser.password_c" field="{{'confirm_pass'}}" valid-password-c="editUser.password_new" required />
+
+
+                        <span  style="color:red" ng-show="userEditorForm.password_c.$error.confirm_pass" class="error">Passwords do not match.</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+</div>
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6"></div>
+        <button type="button" ng-click="updatePassword()" ng-disabled="userEditorForm.$invalid" class="btn btn-sm btn-primary pull-left">
+            <strong>Update</strong></button>
+        <a type="button" href="#/"  class="btn btn-sm btn-primary ">
+            <strong>Cancel</strong> </a>
+    </div>
+</form>

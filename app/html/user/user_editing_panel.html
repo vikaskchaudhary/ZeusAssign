@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="row">
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-7">
+
+            <table class="table table-bordered table-responsive frm" style="margin-bottom : 0">
+
+                <tbody>
+                <tr>
+                    <th colspan="2" class="text-left col-sm-4" ><strong>Enter user details </strong></th>
+
+                </tr>
+                <tr ng-show ="null">
+                    <td > <input ng-if ="editUser.id" class="text-left" type="hidden" name="id" ng-model="editUser.id"  disabled/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>First name</strong><span  style="color:red" ng-show="userEditorForm.firstName.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left" class="form-control" ng-class="(userEditorForm.firstName.$invalid && !userEditorForm.firstName.$pristine) ?'parsley-error' :''"
+                                type="text" name="firstName"  maxlength="20" ng-model="editUser.firstName" ng-pattern="/^[a-zA-Z]*$/" required/>
+
+                        <span style="color:red" ng-show="userEditorForm.firstName.$invalid && !userEditorForm.firstName.$pristine">Please enter a valid name</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>Last name</strong><span  style="color:red" ng-show="userEditorForm.lastName.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left"  ng-class="(userEditorForm.lastName.$invalid && !userEditorForm.lastName.$pristine) ?'parsley-error' :''"
+                                type="text" name="lastName"  maxlength="20" ng-model="editUser.lastName" ng-pattern="/^[a-zA-Z]*$/" required/>
+
+                        <span style="color:red" ng-show="userEditorForm.lastName.$invalid && !userEditorForm.lastName.$pristine">Please enter a valid name</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>City</strong><span  style="color:red" ng-show="userEditorForm.city.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left"  ng-class="(userEditorForm.city.$invalid && !userEditorForm.city.$pristine) ?'parsley-error' :''"
+                                type="text" name="city"  maxlength="20" ng-model="editUser.city" ng-pattern="/^[a-zA-Z]*$/" required/>
+
+                        <span style="color:red" ng-show="userEditorForm.city.$invalid && !userEditorForm.city.$pristine">Please enter a valid name</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>Email Id</strong><span  style="color:red" ng-show="userEditorForm.emailId.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left"  ng-class="(userEditorForm.emailId.$invalid && !userEditorForm.emailId.$pristine) ?'parsley-error' :''"
+                                type="email" name="emailId"  maxlength="40" ng-model="editUser.emailId" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required/>
+
+                        <span style="color:red" ng-show="userEditorForm.emailId.$invalid && !userEditorForm.emailId.$pristine">Please enter a valid email</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>Password</strong> <span style="color:red" ng-show="userEditorForm.password.$error.required && userEditorForm.password.$dirty">*</span></td>
+                    <td>
+                        <input class="text-left"  ng-class="(userEditorForm.password.$invalid && !userEditorForm.password.$pristine) ?'parsley-error' :''"
+                               type="password" name="password"   ng-model="editUser.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required />
+
+                        <span style="color:red" ng-show="!userEditorForm.password.$error.required && (userEditorForm.password.$error.minlength || userEditorForm.password.$error.maxlength) && userEditorForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+                        <span style="color:red" ng-show="!userEditorForm.password.$error.required && !userEditorForm.password.$error.minlength && !userEditorForm.password.$error.maxlength && userEditorForm.password.$error.pattern && userEditorForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                       </td>
+                </tr>
+
+                <tr>
+                    <td class="text-left col-sm-4" ><strong>D.O.B</strong><span  style="color:red" ng-show="userEditorForm.dob.$error.required" class="error">*</span></td>
+                    <td ><input class="text-left"  ng-class="(userEditorForm.dob.$invalid && !userEditorForm.age.$pristine) ?'parsley-error' :''"
+                                type="calender" name="dob"  ng-model="editUser.dob" />
+
+                        <span style="color:red" ng-show="userEditorForm.age.$invalid && !userEditorForm.age.$pristine">Age must be between 1-99</span>
+                    </td>
+                </tr>
+
+                <tr >
+                    <td class="text-left col-sm-4" ><strong>User type</strong><span  style="color:red" ng-show="userEditorForm.userType.$error.required" class="error">*</span></td>
+                    <td ><select  ng-model="editUser.userType" ng-selected="editUser.userType" ng-options="user.id as user.name for user in userRoleDetails" >
+                        </select>
+
+                        <span style="color:red" ng-show="userEditorForm.userType.$invalid && !userEditorForm.userType.$pristine">Please select a value</span>
+                    </td>
+                </tr>
+                <tr >
+                    <td class="text-left col-sm-4" ><strong>User status</strong><span  style="color:red" ng-show="userEditorForm.userStatus.$error.required" class="error">*</span></td>
+                    <td ><select  ng-model="editUser.userType" ng-selected="editUser.userStatus" ng-options="user.userStatus as user.userStatus for user in userRoleDetails" >
+                    </select>
+
+                        <span style="color:red" ng-show="userEditorForm.userStatus.$invalid && !userEditorForm.userStatus.$pristine">Please select a value</span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
+</body>
+</html>

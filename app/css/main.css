@@ -1,0 +1,38 @@
+.frm th { background-color:  powderblue !important; }
+.frm td { background-color:  seashell !important; }
+. requiredField{background-color : red !important}
+
+
+input, select, textarea{
+    color: #000000; !important
+}
+
+.form-control {
+    color: #000000; !important
+}
+
+.bootstrap-tagsinput {
+    min-width: 300px;
+}
+#missingContentTags .tag [data-role="remove"] { display: none; }
+#missingContentTags input { display: none; }
+
+
+.glyphicon {
+	font-size: 16px !important;
+}
+
+
+.highcharts-credits {
+    display : none;
+}
+
+
+
+.highcharts-button-box{
+    display : none;
+}
+
+.highcharts-button-symbol{
+    display : none;
+}
